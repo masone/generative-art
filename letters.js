@@ -54,7 +54,7 @@ const sketch = () => {
       context.font = `${size * width}px arial`;
       context.translate(x, y);
       context.rotate(rotation);
-      context.fillText(random.pick(["J", "E", "A", "j", "e", "s", "a"]), 0, 0);
+      context.fillText(random.pick(["C", "A", "R", "F", "O", "Y", "U"]), 0, 0);
       context.restore();
     });
   };
