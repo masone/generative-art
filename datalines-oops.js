@@ -23,6 +23,8 @@ const availableHeight = height - 2 * padding; // - margin - margin;
 const lineWidth = availableHeight / 31;
 const marginY = lineWidth * 0.9;
 const countModifier = 0.55;
+const palette = random.pick(palettes);
+
 // const marginX = lineWidth * 0.9;
 
 const sketch = () => {
@@ -30,7 +32,6 @@ const sketch = () => {
     const lines = [];
     // const count = random.range(10, 30);
     // const numLines = random.range(5, 100);
-    const palette = random.pick(palettes);
     // const lineWidth = random.range(10, availableHeight / 10);
 
     random.shuffle(Object.keys(makes)).forEach((make, i) => {
@@ -78,7 +79,7 @@ const sketch = () => {
       false
     );
     if (debug) {
-      context.fillStyle = "#11c";
+      context.fillStyle = random.pick(palette);
       context.fill();
     } else {
       context.clip();
