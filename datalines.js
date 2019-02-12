@@ -22,7 +22,7 @@ const availableWidth = width - 2 * padding; // - margin - margin;
 const availableHeight = height - 2 * padding; // - margin - margin;
 const lineWidth = availableHeight / 31;
 const marginY = lineWidth * 0.9;
-const countModifier = 0.55;
+const countModifier = 0.5;
 // const palette = random.pick(palettes);
 const customPalettes = [
   [
@@ -110,9 +110,6 @@ const sketch = () => {
 
       const renderLine = () => {
         const y = currentY + lineWidth / 2;
-        console.log({ lineWidth, marginY });
-        // console.log({ totalCount, fromX, toX, currentY });
-        // context.save();
         context.beginPath();
         context.moveTo(fromX + padding, y + padding);
         context.lineTo(toX + padding, y + padding);
@@ -120,27 +117,11 @@ const sketch = () => {
         context.strokeStyle = color;
         context.stroke();
         context.closePath();
-        // context.restore();
       };
-      // currentY = toX + (availableHeight / lines.length) * i;
-
-      // const offsetY = height / 25;
-      // const y = margin + (i * (height - margin - margin)) / lines.length;
-      // const leftY = offsetY + y;
-
-      // lerp(0, availableWidth, count)
-      // const lineLength = Math.sqrt(Math.pow(count, 2) + Math.pow(offsetY, 2));
-
-      // console.log({ fromX, toX, lineLength, currentY });
-      // console.log(
-      //   { width: availableWidth, length: lineLength, skew: offsetY },
-      //   angle
-      // );
 
       renderLine(context, fromX, toX, currentY, lineWidth, color);
 
       if (toX === availableWidth) {
-        console.log("longer than available");
         // const rest = lineLength - availableWidth;
         currentY = currentY + lineWidth + marginY;
         fromX = 0;
