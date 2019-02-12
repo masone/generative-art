@@ -13,7 +13,13 @@ const settings = {
   // pixesPerInch: 300
 };
 
-const sketch = () => {
+const sketch = async () => {
+  const fontUrl =
+    "https://fonts.gstatic.com/s/muli/v12/7Au_p_0qiz-adZXgOCr2z24PMFk-0g.woff2";
+  const font = new window.FontFace("Muli", `url(${fontUrl})`);
+
+  await font.load();
+
   const createGrid = () => {
     const points = [];
     const count = random.range(10, 40);
@@ -51,10 +57,10 @@ const sketch = () => {
 
       context.save();
       context.fillStyle = color;
-      context.font = `${size * width}px arial`;
+      context.font = `${size * width}px "Muli"`;
       context.translate(x, y);
       context.rotate(rotation);
-      context.fillText(random.pick(["C", "A", "R", "F", "O", "Y", "U"]), 0, 0);
+      context.fillText(random.pick(["CAR", "FOR", "YOU"]), 0, 0);
       context.restore();
     });
   };
