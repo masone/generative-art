@@ -16,7 +16,6 @@ const settings = {
 const sketch = () => {
   const createGrid = () => {
     const lines = [];
-    // const count = random.range(10, 30);
     const numLines = random.range(5, 100);
     const color = random.shuffle(random.pick(palettes))[0];
 
@@ -64,27 +63,9 @@ const sketch = () => {
           )
         );
 
-      // const offsetDistanceX = (c = Math.sqrt(
-      //   Math.pow(offsetY, 2) + Math.pow(dotDistance, 2)
-      // ));
-      // const offsetYDistanceY = (a = Math.sqrt(
-      //   Math.pow(offsetDistanceX, 2) - Math.pow(dotDistance, 2)
-      // ));
-
-      console.log(offsetDistanceX, offsetYDistanceY);
-
-      // const offsetDistanceX = degToRad(
-      //   Math.sqrt(Math.pow(availableWidth, 2) - Math.pow(offsetY, 2))
-      // );
-      // const offsetYDistanceY = dotDistance * degToRad(Math.tan(angle));
-
-      // const a = lineLength · Math.sin(degToRad(angle))/Math.sin(beta)
-      // const c = Math.sqrt( + b² - 2·a·b·cos(gamma))
       console.log(
         { width: availableWidth, length: lineLength, skew: offsetY },
         angle
-        // offsetYDistanceY,
-        // offsetDistanceX
       );
 
       context.save();
@@ -97,16 +78,9 @@ const sketch = () => {
       context.closePath();
       context.restore();
 
-      context.arc(
-        x + dotDistance,
-        leftY - offsetYDistanceY,
-        radius,
-        0,
-        Math.PI * 2,
-        false
-      );
-      context.fillStyle = color;
-      context.fill();
+      // context.arc(x + dotDistance, leftY, radius, 0, Math.PI * 2, false);
+      // context.fillStyle = color;
+      // context.fill();
       // context.beginPath();
       // context.moveTo(x, leftY);
       // context.lineTo(x, leftY + 20);
