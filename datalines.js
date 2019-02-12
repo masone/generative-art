@@ -8,19 +8,19 @@ random.setSeed(random.getRandomSeed());
 console.log(random.getSeed());
 
 const debug = false;
-const width = 2048;
-const height = 2048;
+const a3 = [210, 297];
+const [width, height] = a3;
 const settings = {
   dimensions: [width, height],
-  suffix: random.getSeed()
-  // dimensions: "A4",
-  // pixesPerInch: 300
+  suffix: random.getSeed(),
+  pixelsPerInch: 300,
+  units: "mm"
 };
 
 const padding = width / 9;
 const availableWidth = width - 2 * padding; // - margin - margin;
 const availableHeight = height - 2 * padding; // - margin - margin;
-const lineWidth = availableHeight / 31;
+const lineWidth = availableWidth / 31;
 const marginY = lineWidth * 0.9;
 const countModifier = 0.5;
 // const palette = random.pick(palettes);
@@ -73,24 +73,28 @@ const sketch = () => {
   }, 0);
 
   return ({ context, width, height }) => {
-    const margin = width / 10;
+    let fromX = 0;
+    let currentY = 0;
 
     context.fillStyle = "white";
     context.fillRect(0, 0, width, height);
 
-    let fromX = 0;
-    let currentY = 0;
+    context.fillStyle = "#232a36";
+    context.textAlign = "center";
+    context.font = `${height / 200}mm Arial`;
+    context.fillText("carforyou.ch · makes", width / 2, height - padding);
 
     const radius = availableWidth / 2;
     context.beginPath();
     context.arc(
       availableWidth / 2 + padding,
-      availableHeight / 2 + padding,
+      height * 0.358,
       radius,
       0,
       2 * Math.PI,
       false
     );
+
     if (debug) {
       context.fillStyle = "#11c";
       context.fill();
@@ -132,7 +136,6 @@ const sketch = () => {
 
       fromX = toX;
     });
-    // context.setTransform(1, 0, 0, 1, 0, 0);
   };
 };
 
