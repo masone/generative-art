@@ -49,12 +49,6 @@ const sketch = () => {
       const x = lerp(margin, width - margin, u) - 200;
       const y = lerp(margin, height - margin, v) + 100;
 
-      context.beginPath();
-
-      const startAngle = 0;
-      const endAngle = Math.PI * 2;
-      context.arc(x, y, size * width, startAngle, endAngle, false);
-
       context.save();
       context.fillStyle = color;
       context.font = `${size * width}px arial`;
