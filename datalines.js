@@ -7,7 +7,7 @@ const makes = require("./data/makes");
 random.setSeed(random.getRandomSeed());
 console.log(random.getSeed());
 
-const debug = true;
+const debug = false;
 const width = 2048;
 const height = 2048;
 const settings = {
@@ -23,8 +23,22 @@ const availableHeight = height - 2 * padding; // - margin - margin;
 const lineWidth = availableHeight / 31;
 const marginY = lineWidth * 0.9;
 const countModifier = 0.55;
-const palette = random.pick(palettes);
-// const marginX = lineWidth * 0.9;
+// const palette = random.pick(palettes);
+const customPalettes = [
+  [
+    "#7babd3",
+    "#e5b788",
+    "#ac6337",
+    "#d5ba49",
+    "#193d39",
+    "#6a5864",
+    "#d7dbdf",
+    "#6a5864",
+    "#7d7d2a"
+  ],
+  ["#d4ddd5", "#3c2124", "#e9ad77", "#af7c54", "#aea097"]
+];
+const palette = random.pick(customPalettes);
 
 const sketch = () => {
   const createGrid = () => {
@@ -78,13 +92,11 @@ const sketch = () => {
       false
     );
     if (debug) {
-      context.fillStyle = random.pick(palette);
+      context.fillStyle = "#11c";
       context.fill();
     } else {
       context.clip();
     }
-
-    context.translate(0, 0, width, height);
 
     lines.forEach(({ color, count, lineWidth }) => {
       const percentage = ((100 / maxCount) * count) / 100;
@@ -110,7 +122,6 @@ const sketch = () => {
         context.closePath();
         // context.restore();
       };
-      context.rotate((30 * Math.PI) / 180);
       // currentY = toX + (availableHeight / lines.length) * i;
 
       // const offsetY = height / 25;
