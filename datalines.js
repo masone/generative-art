@@ -1,7 +1,7 @@
 const canvasSketch = require("canvas-sketch");
 const random = require("canvas-sketch-util/random");
 const palettes = require("nice-color-palettes");
-const { lerp, radToDeg, degToRad } = require("canvas-sketch-util/math");
+const { lerp } = require("canvas-sketch-util/math");
 const makes = require("./data/makes");
 
 random.setSeed(random.getRandomSeed());
@@ -17,9 +17,11 @@ const settings = {
   units: "mm"
 };
 
-const padding = width / 9;
-const availableWidth = width - 2 * padding; // - margin - margin;
-const availableHeight = height - 2 * padding; // - margin - margin;
+const objects = makes;
+const paddingY = height / 10;
+const paddingX = width / 6;
+const availableWidth = width - 2 * paddingX; // - margin - margin;
+const availableHeight = height - 2 * paddingY; // - margin - margin;
 const lineWidth = availableWidth / 31;
 const marginY = lineWidth * 0.9;
 const countModifier = 0.5;
@@ -47,12 +49,11 @@ const sketch = () => {
     // const numLines = random.range(5, 100);
     // const lineWidth = random.range(10, availableHeight / 10);
 
-    random.shuffle(Object.keys(makes)).forEach((make, i) => {
+    random.shuffle(Object.keys(objects)).forEach((object, i) => {
       const color = random.pick(palette);
       lines.push({
-        make,
         color,
-        count: makes[make] * countModifier,
+        count: objects[object] * countModifier,
         i,
         lineWidth
       });
@@ -82,13 +83,13 @@ const sketch = () => {
     context.fillStyle = "#232a36";
     context.textAlign = "center";
     context.font = `${height / 200}mm Arial`;
-    context.fillText("carforyou.ch · makes", width / 2, height - padding);
+    context.fillText("carforyou.ch · makes", width / 2, height - paddingY / 2);
 
     const radius = availableWidth / 2;
     context.beginPath();
     context.arc(
-      availableWidth / 2 + padding,
-      height * 0.358,
+      availableWidth / 2 + paddingX,
+      height * 0.34,
       radius,
       0,
       2 * Math.PI,
@@ -115,8 +116,8 @@ const sketch = () => {
       const renderLine = () => {
         const y = currentY + lineWidth / 2;
         context.beginPath();
-        context.moveTo(fromX + padding, y + padding);
-        context.lineTo(toX + padding, y + padding);
+        context.moveTo(fromX + paddingX, y + paddingY);
+        context.lineTo(toX + paddingX, y + paddingY);
         context.lineWidth = lineWidth;
         context.strokeStyle = color;
         context.stroke();
